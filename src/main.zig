@@ -33,7 +33,7 @@ pub fn main() anyerror!void {
     camera.target = rl.Vector2.init(0, 0);
     camera.zoom = 1;
 
-    sc.init();
+    try sc.init();
     
 
     // Main game loop
@@ -46,11 +46,11 @@ pub fn main() anyerror!void {
         sc.updateMousePos();
         rl.hideCursor();
         
-        if(rl.isKeyReleased(rl.KeyboardKey.key_s))
+        if(rl.isKeyReleased(rl.KeyboardKey.s))
         {
             try sav.save(sav.SaveModes.Lossless, "large-testt.sand");
         }
-        if(rl.isKeyReleased(rl.KeyboardKey.key_l))
+        if(rl.isKeyReleased(rl.KeyboardKey.l))
         {
             try lod.load("large-testt.sand");
             
@@ -72,11 +72,11 @@ pub fn main() anyerror!void {
         sc.proccesAll();
         sc.updateInput();
 
-        if(rl.isKeyDown(rl.KeyboardKey.key_c))
+        if(rl.isKeyDown(rl.KeyboardKey.c))
         {
             sc.circleBrush();   
         }
-        if(rl.isKeyReleased(rl.KeyboardKey.key_e))
+        if(rl.isKeyReleased(rl.KeyboardKey.e))
         {
             sc.explosion(40);   
         }
