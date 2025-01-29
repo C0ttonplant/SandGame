@@ -18,7 +18,7 @@ pub var screenTex: rl.RenderTexture2D = undefined;
 
 var tmp: p.Particle = undefined;
 
-pub fn init() void
+pub fn init() anyerror!void
 {
     tmp = p.Particle.init(p.Material.Indestrucable);
 
@@ -40,7 +40,7 @@ pub fn init() void
     screenDim.x = @as(f32, @floatFromInt(rl.getScreenWidth()));
     screenDim.y = @as(f32, @floatFromInt(rl.getScreenHeight()));
 
-    screenTex = rl.RenderTexture2D.init(worldWidth, worldHeight);
+    screenTex = try rl.RenderTexture2D.init(worldWidth, worldHeight);
 
     const worldx: f32 = @as(f32, @floatFromInt(worldWidth));
     const worldy: f32 = @as(f32, @floatFromInt(worldHeight));
@@ -190,56 +190,56 @@ pub fn updateMousePos() void
 pub fn updateInput() void
 {
 
-    if(rl.isKeyReleased(rl.KeyboardKey.key_one))
+    if(rl.isKeyReleased(rl.KeyboardKey.one))
     {
         radius = 1;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_two))
+    if(rl.isKeyReleased(rl.KeyboardKey.two))
     {
         radius = 2;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_three))
+    if(rl.isKeyReleased(rl.KeyboardKey.three))
     {
         radius = 3;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_four))
+    if(rl.isKeyReleased(rl.KeyboardKey.four))
     {
         radius = 4;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_five))
+    if(rl.isKeyReleased(rl.KeyboardKey.five))
     {
         radius = 5;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_six))
+    if(rl.isKeyReleased(rl.KeyboardKey.six))
     {
         radius = 6;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_seven))
+    if(rl.isKeyReleased(rl.KeyboardKey.seven))
     {
         radius = 7;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_eight))
+    if(rl.isKeyReleased(rl.KeyboardKey.eight))
     {
         radius = 8;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_nine))
+    if(rl.isKeyReleased(rl.KeyboardKey.nine))
     {
         radius = 9;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_zero))
+    if(rl.isKeyReleased(rl.KeyboardKey.zero))
     {
         radius = 0;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_equal))
+    if(rl.isKeyReleased(rl.KeyboardKey.equal))
     {
         radius += 1;
     }
-    if(rl.isKeyReleased(rl.KeyboardKey.key_minus))
+    if(rl.isKeyReleased(rl.KeyboardKey.minus))
     {
         radius -= 1;
     }
 
-    if(rl.isMouseButtonDown(rl.MouseButton.mouse_button_left))
+    if(rl.isMouseButtonDown(rl.MouseButton.left))
     {
         setParticleAt(man.mousex, man.mousey, p.Particle.init(@as(p.Material, @enumFromInt(man.enumI))));
     }   
